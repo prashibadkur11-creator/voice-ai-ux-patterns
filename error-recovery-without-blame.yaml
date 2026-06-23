@@ -1,0 +1,29 @@
+id: error-recovery-without-blame
+name: Error Recovery Without Blame
+category: error-recovery
+problem: >
+  Speech recognition and understanding will sometimes get it wrong. How the assistant
+  recovers shapes whether the user feels helped or accused. Phrasing that implies the
+  user spoke unclearly ("I didn't understand you") puts the fault on them and erodes
+  trust.
+approach: >
+  Own the miss and narrow the path forward. Phrase recovery around the system ("I may
+  have got that wrong") rather than the user, and offer a concrete next step or a
+  constrained choice instead of an open-ended "what?". Where possible, show what it
+  did hear so the user can correct just the wrong part.
+anti_pattern: >
+  Repeating a generic "Sorry, I didn't catch that" on every failure. It blames the
+  user implicitly, gives them nothing to act on, and — repeated — makes the system
+  feel broken and the user feel stupid.
+example: >
+  Instead of "I didn't understand", the assistant says "I heard you want to change
+  your flight — is that right, or did you mean something else?" The user confirms or
+  corrects in one short turn, and never feels at fault.
+applies_when:
+  - "Recognition or understanding errors are possible (i.e. always, in voice)."
+  - "Users may be non-native speakers, in noisy environments, or have speech differences."
+related_failure_modes:
+  - over-refusal
+  - bias-and-representational-harm
+related:
+  - re-prompting-without-frustration

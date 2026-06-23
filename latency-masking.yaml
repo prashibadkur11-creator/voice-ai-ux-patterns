@@ -1,0 +1,29 @@
+id: latency-masking
+name: Latency Masking
+category: latency
+problem: >
+  Voice responses can take a variable amount of time to generate. In a spoken
+  conversation, even a one-to-two-second silence reads as "it's broken" or "it
+  didn't hear me", and users start repeating themselves or talking over the system.
+approach: >
+  Acknowledge immediately, then answer. Emit a fast, cheap acknowledgement token
+  ("Let me check that...", a brief earcon, or a thinking sound) within a few hundred
+  milliseconds while the full response generates. Stream the real answer as soon as
+  it is ready. Perceived responsiveness is governed by time-to-first-sound, not total
+  time.
+anti_pattern: >
+  Waiting silently for the complete response before playing anything. Technically the
+  total latency may be fine, but the dead air before the first sound is what users
+  judge — and silence in conversation is interpreted as failure, not patience.
+example: >
+  Asked a question that needs a database lookup, the assistant says "One moment, let
+  me pull that up" instantly, then delivers the answer two seconds later. The user
+  never perceives a broken pause, even though total latency was identical to a silent
+  wait.
+applies_when:
+  - "Responses have variable or occasionally high generation latency."
+  - "The interaction is real-time and conversational rather than batch."
+related_failure_modes:
+  - latency-variability
+related:
+  - graceful-pause-detection

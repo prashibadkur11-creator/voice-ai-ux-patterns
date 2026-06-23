@@ -1,0 +1,28 @@
+id: barge-in-handling
+name: Barge-In Handling
+category: turn-taking
+problem: >
+  Users often want to interrupt the assistant — to correct it, redirect it, or skip
+  a long answer they have already understood. If the assistant cannot be interrupted,
+  it feels like it is not listening, and users are forced to wait out responses that
+  are no longer useful.
+approach: >
+  Support barge-in: keep the microphone open while the assistant speaks, and when the
+  user starts talking, duck or stop the assistant's audio and switch to listening.
+  Treat the interruption as the new priority rather than finishing the scripted reply.
+anti_pattern: >
+  Locking the mic shut while the assistant talks and forcing the user to wait for a
+  beep or the end of the turn. It guarantees the user cannot correct a wrong answer
+  in flight and makes long responses feel like a hostage situation.
+example: >
+  The assistant begins reading a five-item list. After item two the user says "yes,
+  the second one." A barge-in-capable system stops immediately and acts; a
+  non-capable one keeps reading all five items while the user waits, irritated.
+applies_when:
+  - "Responses can be long enough that a user may want to cut in."
+  - "The hardware echo-cancellation can distinguish user speech from system audio."
+related_failure_modes:
+  - over-refusal
+related:
+  - graceful-pause-detection
+  - confirmation-for-irreversible-actions

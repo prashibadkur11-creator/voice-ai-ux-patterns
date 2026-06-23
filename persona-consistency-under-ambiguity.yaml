@@ -1,0 +1,28 @@
+id: persona-consistency-under-ambiguity
+name: Persona Consistency Under Ambiguity
+category: persona
+problem: >
+  A voice assistant's personality is a core part of the product, but ambiguous,
+  off-script, or adversarial input tends to knock it out of character — it falls back
+  to a generic, hedging, "as an AI" voice exactly when the user is testing it most.
+approach: >
+  Define the persona behaviorally and hold it under pressure. Specify concrete,
+  testable voice rules (length, warmth, how it handles not-knowing) and design the
+  fallback responses to be in-character too. When the assistant must decline or admit
+  uncertainty, it should do so as the persona, not drop the persona to do so.
+anti_pattern: >
+  Letting the assistant break character whenever it is unsure — switching to a flat
+  disclaimer voice. The seams show precisely at the moments users notice most, and
+  the personality reads as a thin veneer over a generic bot.
+example: >
+  A witty travel-guide persona asked something out of scope says, in character,
+  "That's outside my map, I'm afraid — but ask me anything about where to eat." Not:
+  "As an AI language model, I cannot help with that request."
+applies_when:
+  - "The product's value depends on a distinct, consistent persona."
+  - "Users may probe edges, ask off-topic things, or push the assistant."
+related_failure_modes:
+  - persona-drift
+  - over-refusal
+related:
+  - error-recovery-without-blame

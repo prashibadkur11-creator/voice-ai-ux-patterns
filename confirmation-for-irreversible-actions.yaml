@@ -1,0 +1,30 @@
+id: confirmation-for-irreversible-actions
+name: Confirmation for Irreversible Actions
+category: trust
+problem: >
+  Voice is a low-confidence channel: the assistant may have misheard, and the user
+  cannot see exactly what it parsed. Acting immediately on a high-stakes or
+  irreversible request (sending money, deleting data, placing an order) risks doing
+  the wrong thing with no undo.
+approach: >
+  Scale confirmation to stakes and confidence. For low-stakes, reversible actions,
+  just act — confirmation is friction. For irreversible or costly actions, read back
+  the key parameters ("Send $200 to Alex — yes or no?") and require an explicit
+  confirm. Lower the bar for confirmation when recognition confidence is low.
+anti_pattern: >
+  Two failure modes at the extremes: confirming everything (so users tune out the
+  confirmations and the friction kills the experience), or confirming nothing (so a
+  single misheard word causes an irreversible mistake). A flat policy in either
+  direction is wrong.
+example: >
+  "Turn on the kitchen light" executes instantly. "Transfer $500 to savings" gets a
+  read-back and waits for "yes" — and if the amount was recognized with low
+  confidence, it re-reads the number specifically.
+applies_when:
+  - "The assistant can take actions with real-world or irreversible consequences."
+  - "Recognition confidence varies and can be measured."
+related_failure_modes:
+  - hallucination
+  - sycophancy
+related:
+  - error-recovery-without-blame

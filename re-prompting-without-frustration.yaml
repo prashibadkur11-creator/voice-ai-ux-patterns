@@ -1,0 +1,29 @@
+id: re-prompting-without-frustration
+name: Re-Prompting Without Frustration
+category: error-recovery
+problem: >
+  When the assistant needs information the user did not provide, it has to ask again.
+  Done badly, repeated questions feel like an interrogation or a broken loop, and the
+  user abandons the task.
+approach: >
+  Make each re-prompt additive and progressive. Acknowledge what was already
+  captured, ask only for the missing piece, and escalate the helpfulness of the
+  prompt each time — from open ("which day?") to constrained ("Monday or Tuesday?")
+  to offering a default ("I'll assume tomorrow unless you say otherwise"). Cap the
+  retries and hand off gracefully rather than looping forever.
+anti_pattern: >
+  Repeating the identical question verbatim after each failure. The user hears the
+  same words, has no new information about what went wrong, and the interaction feels
+  like a stuck record — the fastest way to make someone hang up.
+example: >
+  First ask: "What time works?" If unclear: "Was that morning or afternoon?" Still
+  unclear: "I can do 2pm or 4pm — which is better?" Each turn narrows the space and
+  feels like progress, not repetition.
+applies_when:
+  - "Slot-filling or multi-step tasks where the user may omit required details."
+  - "Recognition may fail repeatedly on the same field."
+related_failure_modes:
+  - over-refusal
+related:
+  - error-recovery-without-blame
+  - graceful-pause-detection

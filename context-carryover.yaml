@@ -1,0 +1,29 @@
+id: context-carryover
+name: Context Carryover
+category: memory
+problem: >
+  Natural conversation relies on shared context: "book it for then", "the cheaper
+  one", "same as last time". If the assistant cannot carry earlier turns forward, it
+  forces users to restate everything explicitly, which is unnatural and tedious in
+  speech.
+approach: >
+  Maintain structured conversational state across turns and resolve references
+  against it. Track the entities and choices already established (dates, items,
+  people) and surface them when resolving pronouns and ellipsis. Confirm the resolved
+  reference when stakes are high ("the 4pm one — booking that now").
+anti_pattern: >
+  Treating each utterance as stateless and re-asking for details already given, or —
+  worse — silently guessing what "it" refers to and acting on the wrong antecedent.
+  Both break the conversational contract the user assumes is in place.
+example: >
+  User: "What's the weather in Denver tomorrow?" ... "And the day after?" A
+  context-carrying assistant answers for Denver, day after tomorrow. A stateless one
+  asks "the day after for where?" — and the illusion of conversation collapses.
+applies_when:
+  - "Multi-turn conversations where later turns depend on earlier ones."
+  - "Users naturally use pronouns, ellipsis, and back-references."
+related_failure_modes:
+  - context-loss
+  - hallucination
+related:
+  - confirmation-for-irreversible-actions

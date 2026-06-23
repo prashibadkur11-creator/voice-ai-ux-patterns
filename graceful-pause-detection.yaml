@@ -1,0 +1,31 @@
+id: graceful-pause-detection
+name: Graceful Pause Detection
+category: turn-taking
+problem: >
+  In speech, a pause does not reliably mean the user is finished. People pause to
+  think, breathe, or search for a word. If the assistant treats every silence as
+  end-of-turn, it interrupts the user mid-thought; if it waits too long, the
+  conversation feels sluggish and unresponsive.
+approach: >
+  Use adaptive end-of-turn detection rather than a fixed silence timeout. Combine
+  acoustic cues (falling pitch, trailing-off energy) with linguistic cues (is the
+  utterance grammatically complete?) and lengthen the timeout after incomplete
+  phrases. Give the user a beat longer when they have just said "um", "so", or a
+  conjunction that implies more is coming.
+anti_pattern: >
+  A single fixed silence threshold (e.g. "end the turn after 700ms of silence").
+  It will either clip users who pause to think or feel laggy for users who speak in
+  quick bursts — and no single value works for both, so you end up annoying everyone
+  a little.
+example: >
+  A user says "I'd like to book a table for... four, no, make it six." A fixed
+  timeout fires after "four" and the assistant books four. Adaptive detection hears
+  the trailing intonation and the incomplete correction, waits, and captures "six".
+applies_when:
+  - "The interface is fully voice-driven with no push-to-talk button."
+  - "Users speak naturally rather than in short fixed commands."
+related_failure_modes:
+  - latency-variability
+related:
+  - barge-in-handling
+  - re-prompting-without-frustration
