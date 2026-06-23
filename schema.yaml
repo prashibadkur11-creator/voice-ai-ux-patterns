@@ -1,0 +1,57 @@
+# Voice AI UX Pattern Library — Schema Definition
+#
+# Each pattern in /patterns is a YAML file conforming to this schema.
+# The generator (scripts/generate_catalog.py) renders them into CATALOG.md;
+# the validator (scripts/validate_patterns.py) enforces this schema in CI.
+#
+# Cross-references to sibling repos:
+#   - related_failure_modes -> ids from the AI Failure Mode Taxonomy repo
+
+schema:
+  id:
+    required: true
+    description: Lowercase, hyphenated slug. Stable identifier (e.g. graceful-pause-detection).
+
+  name:
+    required: true
+    description: Human-readable pattern name.
+
+  category:
+    required: true
+    enum: [turn-taking, latency, error-recovery, trust, persona, memory]
+    description: Top-level grouping for filtering the catalog.
+
+  problem:
+    required: true
+    description: The UX problem this pattern solves, described from the user's side.
+
+  approach:
+    required: true
+    description: The recommended solution, concretely. What to actually do.
+
+  anti_pattern:
+    required: true
+    description: >
+      The common wrong way to do it, and why it fails. This is the field that
+      shows real judgment — naming the seductive bad approach, not just the good one.
+
+  example:
+    required: true
+    description: A concrete instance of the pattern in action.
+
+  applies_when:
+    required: true
+    type: list
+    description: Conditions where this pattern is relevant (vs. when it isn't needed).
+
+  related_failure_modes:
+    required: false
+    type: list
+    description: >
+      ids from the AI Failure Mode Taxonomy repo that this pattern helps prevent
+      (e.g. persona-drift, latency-variability).
+
+  related:
+    required: false
+    type: list
+    description: ids of other patterns that pair with or trade off against this one.
