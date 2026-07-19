@@ -1,4 +1,5 @@
 # Voice AI UX Pattern Library
+![License: MIT](https://img.shields.io/github/license/prashibadkur11-creator/voice-ai-ux-patterns) ![CI](https://img.shields.io/github/actions/workflow/status/prashibadkur11-creator/voice-ai-ux-patterns/pattern-ci.yml?branch=main&label=CI)
 
 A structured, forkable catalog of UX patterns specific to **voice AI products** —
 the design problems that only show up when the interface is spoken: turn-taking,
