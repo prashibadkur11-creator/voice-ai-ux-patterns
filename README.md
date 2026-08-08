@@ -1,15 +1,15 @@
 # Voice AI UX Pattern Library
 ![License: MIT](https://img.shields.io/github/license/prashibadkur11-creator/voice-ai-ux-patterns) ![CI](https://img.shields.io/github/actions/workflow/status/prashibadkur11-creator/voice-ai-ux-patterns/pattern-ci.yml?branch=main&label=CI)
 
-A structured, forkable catalog of UX patterns specific to **voice AI products** —
-the design problems that only show up when the interface is spoken: turn-taking,
-latency masking, barge-in, error recovery, persona consistency, and conversational
-memory.
+A catalog of UX patterns for voice AI products. Each pattern covers a design problem
+that only shows up when the interface is spoken: turn-taking, latency masking,
+barge-in, error recovery, persona consistency, and conversational memory.
 
-Voice AI is an underserved PM discipline — there is very little public, structured
-writing on it. This library captures the patterns as reusable, comparable entries
-rather than prose, so they can be applied, forked, and extended like the rest of an
-AI product toolkit.
+Patterns are YAML files with a fixed set of fields, so they can be compared, diffed,
+and validated in CI rather than read as prose. There is very little public structured
+writing on voice AI UX, which is the gap this fills.
+
+[TODO: what I was designing when I started collecting these, and which one I got wrong first]
 
 ## What's here
 
@@ -25,29 +25,29 @@ Each pattern is a YAML file in `patterns/` conforming to [`schema.yaml`](schema.
 | `related_failure_modes` | Links to the AI Failure Mode Taxonomy |
 | `related` | Patterns that pair with or trade off against this one |
 
-The `anti_pattern` field is the heart of each entry — naming the tempting wrong way
-and why it fails is what separates lived experience from a glossary.
+Every entry names an `anti_pattern`. The tempting wrong approach is usually more
+obvious than the right one, so it is worth writing down.
 
 Browse [`CATALOG.md`](CATALOG.md) for the readable, generated view.
 
 ## The 8 patterns
 
-- **Graceful Pause Detection** — knowing when a user is finished vs. just pausing
-- **Latency Masking** — acknowledging instantly so delay doesn't read as failure
-- **Barge-In Handling** — letting users interrupt the assistant mid-response
-- **Error Recovery Without Blame** — recovering from misrecognition without faulting the user
-- **Confirmation for Irreversible Actions** — scaling confirmation to stakes and confidence
-- **Re-Prompting Without Frustration** — asking again progressively, not as a stuck record
-- **Persona Consistency Under Ambiguity** — staying in character under pressure
-- **Context Carryover** — resolving "the cheaper one" / "same as last time" across turns
+- **Graceful Pause Detection**. Knowing when a user is finished vs. just pausing
+- **Latency Masking**. Acknowledging instantly so delay doesn't read as failure
+- **Barge-In Handling**. Letting users interrupt the assistant mid-response
+- **Error Recovery Without Blame**. Recovering from misrecognition without faulting the user
+- **Confirmation for Irreversible Actions**. Scaling confirmation to stakes and confidence
+- **Re-Prompting Without Frustration**. Asking again progressively, not as a stuck record
+- **Persona Consistency Under Ambiguity**. Staying in character under pressure
+- **Context Carryover**. Resolving "the cheaper one" / "same as last time" across turns
 
 ## How it connects
 
 Each pattern links by `related_failure_modes` to the
-[AI Failure Mode Taxonomy](https://github.com/prashibadkur11-creator/ai-failure-mode-taxonomy)
-— e.g. *Latency Masking* prevents `latency-variability`, *Persona Consistency* prevents
-`persona-drift`. The taxonomy says how voice AI breaks; this library says how to design
-around it.
+[AI Failure Mode Taxonomy](https://github.com/prashibadkur11-creator/ai-failure-mode-taxonomy).
+*Latency Masking* prevents `latency-variability`. *Persona Consistency* prevents
+`persona-drift`. The taxonomy says how voice AI breaks. This library says how to
+design around it.
 
 ## Using it
 
@@ -62,8 +62,8 @@ python scripts/generate_catalog.py
 ```
 
 To add a pattern: create `patterns/<id>.yaml` following the schema (the `id` must
-match the filename), then regenerate the catalog. Open a PR — **Pattern CI**
-validates every pattern and blocks anything malformed or incomplete.
+match the filename), then regenerate the catalog. Open a PR. Pattern CI validates
+every pattern and blocks anything malformed or incomplete.
 
 ## Repo layout
 
@@ -77,6 +77,16 @@ validates every pattern and blocks anything malformed or incomplete.
 │   └── validate_patterns.py          # schema validator (the PR gate)
 └── .github/workflows/pattern-ci.yml
 ```
+
+## Limitations
+
+[TODO: 8 patterns is a starting set, not coverage. What is missing]
+
+[TODO: which of these I have actually shipped vs. read about]
+
+[TODO: the schema validates structure, not whether the advice is right]
+
+[TODO: nothing here covers non-English or noisy-environment voice UX]
 
 ## License
 
